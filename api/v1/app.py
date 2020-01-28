@@ -2,7 +2,7 @@
 """
 Start a Flask web application
 """
-from flask import Flask, Blueprint
+from flask import Flask, Blueprint, jsonify
 from models import storage
 from os import getenv
 from api.v1.views import app_views
@@ -14,6 +14,11 @@ app.register_blueprint(app_views)
 def remove_session(response_or_exc):
     """ Remove the current SQLAlchemy session """
     storage.close()
+
+@app.errorhandler(404)
+    """Handle 404 error"""
+    def 404_not_found(self):
+        return jsonify({"error": "Not found"})
 
 if __name__ == '__main__':
     HBNB_API_HOST = getenv('HBNB_API_HOST')
