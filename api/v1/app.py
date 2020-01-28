@@ -19,7 +19,7 @@ def remove_session(response_or_exc):
 @app.errorhandler(404)
 def not_found(self):
     """Handle 404 error"""
-    return jsonify({"error": "Not found"})
+    return jsonify({"error": "Not found"}), 404
 
 if __name__ == '__main__':
     HBNB_API_HOST = getenv('HBNB_API_HOST')
