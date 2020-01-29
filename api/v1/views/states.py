@@ -62,4 +62,5 @@ def update_state(state_id):
         abort(404)
     for key, value in update_attr.items():
         setattr(my_state, key, value)
+    storage.save()
     return my_state.to_dict()
