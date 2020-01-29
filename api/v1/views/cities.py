@@ -56,17 +56,18 @@ def create_cities(state_id):
     storage.save()
     return new_city.to_dict(), 201
 
-@app_views.route('/api/v1/states/<state_id>', methods=['PUT'],
+@app_views.route('/api/v1/cities/<city_id>', methods=['PUT'],
                  strict_slashes=False)
-def update_state(state_id):
-    """ update a State """
+def update_city(city_id):
+    """ update a City """
     update_attr = request.get_json()
     if not update_attr:
         abort(400, {'Not a JSON'})
-    my_state = storage.get('State', state_id)
-    if not my_state:
+    my_city = storage.get('City', city_id)
+    if not my_city:
         abort(404)
     for key, value in update_attr.items():
-        setattr(my_state, key, value)
-    return my_state.to_dict()
+        setattr(my_city, key, value)
+    storage.save()
+    return my_city.to_dict()
 
