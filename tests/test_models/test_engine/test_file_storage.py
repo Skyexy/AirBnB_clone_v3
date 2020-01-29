@@ -31,13 +31,14 @@ class TestFileStorageDocs(unittest.TestCase):
         """Set up for the doc tests"""
         cls.fs_f = inspect.getmembers(FileStorage, inspect.isfunction)
 
-    def testGet(self):
+    def test_get(self):
         """Tests to check get method"""
-        first_state_id = list(storage.all("State").values())[0].id
-        first_state = storage.get("State", first_state_id)
-        self.assertTrue(isinstance(first_state, State))
+        if storage.all("State").values():
+            first_state_id = list(storage.all("State").values())[0].id
+            first_state = storage.get("State", first_state_id)
+            self.assertTrue(isinstance(first_state, State))
 
-    def testCount(self):
+    def test_count(self):
         """Tests to check count method"""
         all_objects = storage.count()
         all_states = storage.count("State")
