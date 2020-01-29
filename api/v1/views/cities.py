@@ -30,6 +30,7 @@ def retrieve_city(city_id):
     except:
         abort(404)
 
+
 @app_views.route('/api/v1/cities/<city_id>', methods=['DELETE'],
                  strict_slashes=False)
 def delete_city(city_id):
@@ -40,6 +41,7 @@ def delete_city(city_id):
         storage.save()
         return {}
     abort(404)
+
 
 @app_views.route('/api/v1/states/<state_id>/cities', methods=['POST'],
                  strict_slashes=False)
@@ -56,6 +58,7 @@ def create_cities(state_id):
     storage.save()
     return new_city.to_dict(), 201
 
+
 @app_views.route('/api/v1/cities/<city_id>', methods=['PUT'],
                  strict_slashes=False)
 def update_city(city_id):
@@ -70,4 +73,3 @@ def update_city(city_id):
         setattr(my_city, key, value)
     storage.save()
     return my_city.to_dict()
-
