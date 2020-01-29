@@ -5,7 +5,7 @@ New view for Amenity objects that handles default Restful API actions
 from flask import Flask, jsonify, abort, request
 from api.v1.views import app_views
 from models import storage
-from models.amenities import Amenity
+from models.amenity import Amenity
 
 
 @app_views.route('/api/v1/amenities', strict_slashes=False)
