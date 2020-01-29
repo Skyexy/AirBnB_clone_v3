@@ -16,6 +16,7 @@ def all_states():
         all_states.append(state.to_dict())
     return jsonify(all_states)
 
+
 @app_views.route('/api/v1/states/<state_id>', strict_slashes=False)
 def retrieve_state(state_id):
     """ retrieve a particular State """
@@ -24,6 +25,7 @@ def retrieve_state(state_id):
         return state
     except:
         abort(404)
+
 
 @app_views.route('/api/v1/states/<state_id>', methods=['DELETE'],
                  strict_slashes=False)
@@ -35,6 +37,7 @@ def delete_state(state_id):
         storage.save()
         return {}
     abort(404)
+
 
 @app_views.route('/api/v1/states', methods=['POST'],
                  strict_slashes=False)
@@ -49,6 +52,7 @@ def create_state():
     storage.new(new_state)
     storage.save()
     return new_state.to_dict(), 201
+
 
 @app_views.route('/api/v1/states/<state_id>', methods=['PUT'],
                  strict_slashes=False)
