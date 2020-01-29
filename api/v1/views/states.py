@@ -2,9 +2,10 @@
 """
 New view for State objects that handles default Restful API actions
 """
-from flask import Flask, jsonify, abort
+from flask import Flask, jsonify, abort, request
 from api.v1.views import app_views
 from models import storage
+from models.state import State
 
 
 @app_views.route('/api/v1/states', strict_slashes=False)
@@ -39,4 +40,26 @@ def delete_state(state_id):
                  strict_slashes=False)
 def create_state():
     """ create a State """
-    
+    state_name = request.get_json()
+    if not state_name:
+        abort(400, {'Not a JSON'})
+    elif 'name' not in state_name:
+        abort(400, {'Missing name'})
+    new_state = State(**state_name)
+    storage.new(new_state)
+    storage.save()
+    return new_state.to_dict(), 201
+
+@app_views.route('/api/v1/states/<state_id>', methods=['PUT'],
+                 strict_slashes=False)
+def update_state(state_id):
+    """ update a State """
+    update_attr = request.get_json()
+    if not update_attr:
+        abort(400, {'Not a JSON'})
+    my_state = storage.get('State', state_id)
+    if not my_state:
+        abort(404)
+    for key, value in update_attr.items():
+        setattr(my_state, key, value)
+    return my_state.to_dict()
