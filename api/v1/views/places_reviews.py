@@ -74,6 +74,8 @@ def update_review(review_id):
     if not my_review:
         abort(404)
     for key, value in update_attr.items():
-        setattr(my_review, key, value)
+        if key not in ['id', 'user_id', 'place_id', 'created_at',
+                       'updated_at']:
+            setattr(my_review, key, value)
     storage.save()
     return my_review.to_dict()

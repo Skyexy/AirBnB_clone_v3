@@ -74,6 +74,8 @@ def update_place(place_id):
     if not my_place:
         abort(404)
     for key, value in update_attr.items():
-        setattr(my_place, key, value)
+        if key not in ['id', 'user_id', 'city_id', 'created_at',
+                       'updated_at']:
+            setattr(my_place, key, value)
     storage.save()
     return my_place.to_dict()
