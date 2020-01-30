@@ -24,11 +24,10 @@ def all_cities(state_id):
 @app_views.route('/api/v1/cities/<city_id>', strict_slashes=False)
 def retrieve_city(city_id):
     """ retrieve a particular City """
-    try:
-        city = jsonify(storage.get('City', city_id).to_dict())
-        return city
-    except:
-        abort(404)
+    city = storage.get('City', city_id)
+    if city:
+        return city.to_dict()
+    abort(404)
 
 
 @app_views.route('/api/v1/cities/<city_id>', methods=['DELETE'],
