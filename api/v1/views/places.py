@@ -25,7 +25,7 @@ def retrieve_place(place_id):
     """ retrieve a particular Place """
     place = storage.get('Place', place_id)
     if place:
-        return place
+        return place.to_dict()
     abort(404)
 
 

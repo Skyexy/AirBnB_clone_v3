@@ -25,7 +25,7 @@ def retrieve_review(review_id):
     """ retrieve a particular Review """
     review = storage.get('Review', review_id)
     if review:
-        return review
+        return review.to_dict()
     abort(404)
 
 
