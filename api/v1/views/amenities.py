@@ -65,6 +65,7 @@ def update_amenity(amenity_id):
     if not my_amenity:
         abort(404)
     for key, value in update_attr.items():
-        setattr(my_amenity, key, value)
+        if key not in ['id', 'created_at', 'updated_at']:
+            setattr(my_amenity, key, value)
     storage.save()
     return my_amenity.to_dict(), 200
