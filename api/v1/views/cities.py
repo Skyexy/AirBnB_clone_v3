@@ -36,7 +36,7 @@ def delete_city(city_id):
     """ delete a City """
     city = storage.get('City', city_id)
     if city:
-        city.delete(city)
+        storage.delete(city)
         storage.save()
         return {}
     abort(404)

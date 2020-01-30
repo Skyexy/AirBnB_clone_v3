@@ -12,22 +12,21 @@ from models.place import Place
 def all_places(city_id):
     """ retrieve list of all Place objects """
     all_places = []
+    if not storage.get('City', city_id):
+        abort(404)
     for place in storage.all('Place').values():
         if city_id == place.to_dict()['city_id']:
             all_places.append(place.to_dict())
-    if not all_places:
-        abort(404)
     return jsonify(all_places)
 
 
 @app_views.route('/api/v1/places/<place_id>', strict_slashes=False)
 def retrieve_place(place_id):
     """ retrieve a particular Place """
-    try:
-        place = jsonify(storage.get('Place', place_id).to_dict())
+    place = storage.get('Place', place_id)
+    if place:
         return place
-    except:
-        abort(404)
+    abort(404)
 
 
 @app_views.route('/api/v1/places/<place_id>', methods=['DELETE'],
@@ -36,7 +35,7 @@ def delete_place(place_id):
     """ delete a Place """
     place = storage.get('Place', place_id)
     if place:
-        place.delete()
+        storage.delete(place)
         storage.save()
         return {}
     abort(404)
