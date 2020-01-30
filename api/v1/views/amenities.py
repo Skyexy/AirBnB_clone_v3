@@ -39,32 +39,32 @@ def delete_amenity(amenity_id):
     abort(404)
 
 
-@app_views.route('/api/v1/amenity', methods=['POST'],
+@app_views.route('/api/v1/amenities', methods=['POST'],
                  strict_slashes=False)
 def create_amenity():
     """ create an Amenity """
     amenity_name = request.get_json()
     if not amenity_name:
         abort(400, {'Not a JSON'})
-    elif 'name' not in amenity_name:
+    if 'name' not in amenity_name:
         abort(400, {'Missing name'})
     new_amenity = Amenity(**amenity_name)
     storage.new(new_amenity)
     storage.save()
-    return new_amenity.to_dict(), 201
+    return jsonify(new_amenity.to_dict(), 201)
 
 
-@app_views.route('/api/v1/amenity/<amenity_id>', methods=['PUT'],
+@app_views.route('/api/v1/amenities/<amenity_id>', methods=['PUT'],
                  strict_slashes=False)
 def update_amenity(amenity_id):
     """ update a Amenity """
     update_attr = request.get_json()
     if not update_attr:
-        abort(400, {'Not a JSON'})
+        return jsonify(400, {'Not a JSON'})
     my_amenity = storage.get('Amenity', amenity_id)
     if not my_amenity:
         abort(404)
     for key, value in update_attr.items():
         setattr(my_amenity, key, value)
     storage.save()
-    return my_amenity.to_dict()
+    return my_amenity.to_dict(), 200
