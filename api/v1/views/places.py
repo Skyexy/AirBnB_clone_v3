@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-New view for State objects that handles default Restful API actions
+New view for Place objects that handles default Restful API actions
 """
 from flask import Flask, jsonify, abort, request
 from api.v1.views import app_views
