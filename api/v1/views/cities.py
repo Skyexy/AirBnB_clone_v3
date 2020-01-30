@@ -13,11 +13,11 @@ from models.state import State
 def all_cities(state_id):
     """ retrieve list of all City objects of State"""
     all_cities = []
-    for city in storage.all('City').values():
-        if state_id == city.state_id:
-            all_cities.append(city.to_dict())
-    if not all_cities:
+    if not storage.get('State', state_id):
         abort(404)
+    for city in storage.all('City').values():
+        if state_id == city.to_dict()['state_id']:
+            all_cities.append(city.to_dict())
     return jsonify(all_cities)
 
 
@@ -37,7 +37,7 @@ def delete_city(city_id):
     """ delete a City """
     city = storage.get('City', city_id)
     if city:
-        city.delete()
+        city.delete(city)
         storage.save()
         return {}
     abort(404)
@@ -45,7 +45,7 @@ def delete_city(city_id):
 
 @app_views.route('/api/v1/states/<state_id>/cities', methods=['POST'],
                  strict_slashes=False)
-def create_cities(state_id):
+def create_city(state_id):
     """ create a City """
     city_name = request.get_json()
     if not storage.get('State', state_id):
