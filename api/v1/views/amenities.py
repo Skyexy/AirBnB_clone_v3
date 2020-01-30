@@ -23,8 +23,7 @@ def retrieve_amenity(amenity_id):
     amenity = storage.get('Amenity', amenity_id)
     if amenity:
         return amenity.to_dict()
-    except:
-        abort(404)
+    abort(404)
 
 
 @app_views.route('/api/v1/amenities/<amenity_id>', methods=['DELETE'],
