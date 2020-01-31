@@ -83,15 +83,22 @@ Classes inherited from Base Model:
 * `def update_amenity(amenity_id)` - update a Amenity
 
 [cities.py](/api/v1/views/cities.py) - City objects that handles default Restful API actions
-* `def all_cities()` - retrieve list of all City objects
+* `def all_cities(state_id)` - retrieve list of all City objects of State
 * `def retrieve_city(city_id)` - retrieve a particular City
 * `def delete_city(city_id)` - delete a City
-* `def create_city()` - create a City
+* `def create_city(state_id)` - create a City
 * `def update_city(city_id)` - update a City
 
 [index.py](/api/v1/views/index.py) - Create a route that returns a JSON
 * `def status()` - return a JSON
 * `def stats()` - retrieve the number of each object by type
+
+[places.py ](/api/v1/views/places.py) - Place objects that handles default Restful API actions
+* `def all_places(city_id)` - retrieve list of all Place objects
+* `def retrieve_place(place_id))` - retrieve a particular Place
+* `def delete_place(place_id)` - delete a Place
+* `def create_place(city_id)` - create a Place
+* `def update_place(place_id)` - update a Place
 
 #### `/tests` directory contains all unit test cases for this project:
 [/test_models/test_base_model.py](/tests/test_models/test_base_model.py) - Contains the TestBaseModel and TestBaseModelDocs classes
