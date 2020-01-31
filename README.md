@@ -113,12 +113,19 @@ Restful API actions
 * `def create_review(place_id)` - create a Review
 * `def update_review(review_id)` - update a Review
 
-[state.py](/api/v1/views/state/py) - State objects that handles default Restful API actions
+[state.py](/api/v1/views/state.py) - State objects that handles default Restful API actions
 * `def all_states()` - retrieve list of all State objects
 * `def retrieve_state(state_id)` - retrieve a particular State
 * `def delete_state(state_id)` - delete a State
 * `def create_state()` - create a State
 * `def update_state(state_id)` - update a State
+
+[users.py](/api/v1/views/users.py) - User objects that handles default Restful API actions
+* `def all_users()` - retrieve list of all User objects
+* `def retrieve_user(user_id)` - retrieve a particular User
+* `def delete_user(user_id)` - delete a User
+* `def create_user()` - create a User
+* `def update_user(user_id)` - update a User
 
 #### `/tests` directory contains all unit test cases for this project:
 [/test_models/test_base_model.py](/tests/test_models/test_base_model.py) - Contains the TestBaseModel and TestBaseModelDocs classes
