@@ -70,6 +70,11 @@ Classes inherited from Base Model:
 * `def get(self, cls, id)` - retrieve an object
 * `def count(self, cls=None)` - count the number of objects in storage
 
+### `api/v1/` directory contains needed imports  and handles errors:
+[app.py](/api/v1/app.py) - Flask web application
+* `def remove_session(response_or_exc)` - Remove the current SQLAlchemy session
+* `def not_found(self)` - handle 404 error
+
 #### `/tests` directory contains all unit test cases for this project:
 [/test_models/test_base_model.py](/tests/test_models/test_base_model.py) - Contains the TestBaseModel and TestBaseModelDocs classes
 TestBaseModelDocs class:
