@@ -89,6 +89,10 @@ Classes inherited from Base Model:
 * `def create_city()` - create a City
 * `def update_city(city_id)` - update a City
 
+[index.py](/api/v1/views/index.py) - Create a route that returns a JSON
+* `def status()` - return a JSON
+* `def stats()` - retrieve the number of each object by type
+
 #### `/tests` directory contains all unit test cases for this project:
 [/test_models/test_base_model.py](/tests/test_models/test_base_model.py) - Contains the TestBaseModel and TestBaseModelDocs classes
 TestBaseModelDocs class:
