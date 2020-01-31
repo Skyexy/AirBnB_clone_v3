@@ -1,4 +1,4 @@
-# AirBnB Clone - The Console
+#AirBnB Clone - The Console
 The console is the first segment of the AirBnB project at Holberton School that will collectively cover fundamental concepts of higher level programming. The goal of AirBnB project is to eventually deploy our server a simple copy of the AirBnB Website(HBnB). A command interpreter is created in this segment to manage objects for the AirBnB(HBnB) website.
 
 #### Functionalities of this command interpreter:
@@ -93,12 +93,18 @@ Classes inherited from Base Model:
 * `def status()` - return a JSON
 * `def stats()` - retrieve the number of each object by type
 
-[places.py ](/api/v1/views/places.py) - Place objects that handles default Restful API actions
+[places.py](/api/v1/views/places.py) - Place objects that handles default Restful API actions
 * `def all_places(city_id)` - retrieve list of all Place objects
 * `def retrieve_place(place_id))` - retrieve a particular Place
 * `def delete_place(place_id)` - delete a Place
 * `def create_place(city_id)` - create a Place
 * `def update_place(place_id)` - update a Place
+
+[places_amenities.py](/api/v1/views/places_amenities.py) - Place and Amenity objects that handles default
+Restful API actions
+* `def all_amenities_by_place(place_id)` - retrieve list of all Amenity objects
+* `def delete_amenity_by_place(place_id, amenity_id)` - delete an Amenity
+* `def link_amenity_to_place(place_id, amenity_id)` - link an Amenity to a Place
 
 #### `/tests` directory contains all unit test cases for this project:
 [/test_models/test_base_model.py](/tests/test_models/test_base_model.py) - Contains the TestBaseModel and TestBaseModelDocs classes
