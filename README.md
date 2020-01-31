@@ -54,7 +54,7 @@ Classes inherited from Base Model:
 * [state.py](/models/state.py)
 * [user.py](/models/user.py)
 
-#### `/models/engine` directory contains File Storage class that handles JASON serialization and deserialization :
+#### `/models/engine` directory contains File Storage class that handles JSON serialization and deserialization :
 [file_storage.py](/models/engine/file_storage.py) - serializes instances to a JSON file & deserializes back to instances
 * `def all(self)` - returns the dictionary __objects
 * `def new(self, obj)` - sets in __objects the obj with key <obj class name>.id
@@ -62,6 +62,11 @@ Classes inherited from Base Model:
 * ` def reload(self)` -  deserializes the JSON file to __objects
 * `def delete(self, obj=None)` - deletes obj from __objects if it’s inside
 * `def close(self)` - call reload() method for deserializing the JSON file to objects
+* `def get(self, cls, id)` - retrieve an object
+* `def count(self, cls=None)` - count the number of objects in storage
+ 
+[db_storage.py](models/engine/db_storage.py) - interacts with the MySQL database
+* `def close(self)` - call remove() method on the private session attribute
 * `def get(self, cls, id)` - retrieve an object
 * `def count(self, cls=None)` - count the number of objects in storage
 
